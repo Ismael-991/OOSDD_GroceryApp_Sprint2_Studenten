@@ -39,7 +39,7 @@ jobs:
         run: dotnet restore Grocery.App/Grocery.App.csproj
  
       - name: Bouw de applicatie
-        run: dotnet build Grocery.App/Grocery.App.csproj -c Release
+        run: dotnet build Grocery.App/Grocery.App.csproj -f net8.0-ios -c Release
  
       - name: Voer unit tests uit
         run: dotnet test --configuration Release --no-restore --no-build --verbosity normal
