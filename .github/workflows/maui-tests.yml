@@ -33,13 +33,13 @@ jobs:
 
       # Restore dependencies per project voor iOS
       - name: Restore Grocery.App
-        run: dotnet restore Grocery.App/Grocery.App.csproj /p:TargetFramework=net8.0-ios
+        run: dotnet restore Grocery.App/Grocery.App.csproj -f net8.0-ios
 
       - name: Restore Grocery.Core
-        run: dotnet restore Grocery.Core/Grocery.Core.csproj /p:TargetFramework=net8.0-ios
+        run: dotnet restore Grocery.Core/Grocery.Core.csproj -f net8.0-ios
 
       - name: Restore Grocery.Core.Data
-        run: dotnet restore Grocery.Core.Data/Grocery.Core.Data.csproj /p:TargetFramework=net8.0-ios
+        run: dotnet restore Grocery.Core.Data/Grocery.Core.Data.csproj -f net8.0-ios
 
       # Build het iOS project
       - name: Build iOS project
