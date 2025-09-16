@@ -1,4 +1,4 @@
-name: MAUI Unit Tests
+name: MAUI iOS Unit Tests
 
 on:
   push:
@@ -15,23 +15,36 @@ on:
 jobs:
   test:
     runs-on: macos-latest
+
     steps:
-      - name: Haal de repository op
+      # Haal de repository op
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Installeer .NET SDK
+      # Installeer .NET SDK
+      - name: Setup .NET SDK
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: '8.0.x'
 
+      # Installeer MAUI iOS workload
       - name: Install MAUI iOS workload
         run: dotnet workload install ios
 
-      - name: Herstel afhankelijkheden
-        run: dotnet restore Grocery.App/Grocery.App.csproj
+      # Restore dependencies per project voor iOS
+      - name: Restore Grocery.App
+        run: dotnet restore Grocery.App/Grocery.App.csproj /p:TargetFramework=net8.0-ios
 
-      - name: Bouw de applicatie
-        run: dotnet build Grocery.App/Grocery.App.csproj -c Release
+      - name: Restore Grocery.Core
+        run: dotnet restore Grocery.Core/Grocery.Core.csproj /p:TargetFramework=net8.0-ios
 
-      - name: Voer unit tests uit
+      - name: Restore Grocery.Core.Data
+        run: dotnet restore Grocery.Core.Data/Grocery.Core.Data.csproj /p:TargetFramework=net8.0-ios
+
+      # Build het iOS project
+      - name: Build iOS project
+        run: dotnet build Grocery.App/Grocery.App.csproj -c Release -f net8.0-ios -r iossimulator-x64
+
+      # Run unit tests
+      - name: Run unit tests
         run: dotnet test --configuration Release --no-restore --no-build --verbosity normal
