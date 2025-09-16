@@ -19,12 +19,6 @@
         <RuntimeIdentifiers Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">
             android-arm;android-arm64;android-x86;android-x64
         </RuntimeIdentifiers>
-
-        <RuntimeIdentifiers Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">
-            ios-arm64;iossimulator-x64
-        </RuntimeIdentifiers>
-
-
         <OutputType>Exe</OutputType>
 		<RootNamespace>Grocery.App</RootNamespace>
 		<UseMaui>true</UseMaui>

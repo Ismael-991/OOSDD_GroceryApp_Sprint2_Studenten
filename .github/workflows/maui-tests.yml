@@ -24,22 +24,16 @@ jobs:
         with:
           dotnet-version: '8.0.x'  # Gebruik de juiste versie voor MAUI
  
-      # Installeer workloads per platform
-      - name: Install MAUI Android workload
-        run: dotnet workload install maui-android
-
+      # Installeer workloads 
       - name: Install MAUI iOS workload
         run: dotnet workload install ios
-
-      - name: Install MAUI MacCatalyst workload
-        run: dotnet workload install maccatalyst
      
       # Restore dependencie
       - name: Herstel afhankelijkheden
         run: dotnet restore Grocery.App/Grocery.App.csproj
  
       - name: Bouw de applicatie
-        run: dotnet build Grocery.App/Grocery.App.csproj -f net8.0-ios -c Release
+        run: dotnet build Grocery.App/Grocery.App.csproj -c Release -f net8.0-ios -r iossimulator-x64
  
       - name: Voer unit tests uit
         run: dotnet test --configuration Release --no-restore --no-build --verbosity normal
