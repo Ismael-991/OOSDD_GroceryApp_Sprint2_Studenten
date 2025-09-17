@@ -6,10 +6,26 @@
              xmlns:m="clr-namespace:Grocery.Core.Models;assembly=Grocery.Core"
              Title="GroceryListsView">
     <Shell.TitleView>
-        <Grid>
-            <Label Text="Boodschappenlijsten" FontSize="Large" HorizontalOptions="Center" VerticalOptions="Center" />
+        <Grid ColumnDefinitions="*,*" RowDefinitions="*"
+              VerticalOptions="FillAndExpand"
+              BackgroundColor="#C49B33">
+            
+            <Label Grid.Column="0"
+                   Text="Boodschappenlijsten"
+                   FontSize="Large"
+                   HorizontalOptions="Center"
+                   VerticalTextAlignment="Center"
+                   TextColor="Black"/>
+            
+            <Label Grid.Column="1"
+                   Text="{Binding LoggedInUserName, StringFormat='Welkom, {0}'}"
+                   FontSize="Large"
+                   HorizontalOptions="Center"
+                   VerticalTextAlignment="Center"
+                   TextColor="Black"/>
         </Grid>
     </Shell.TitleView>
+
 
     <Border Stroke="#C49B33"
         StrokeThickness="4"
@@ -20,6 +36,7 @@
                         SelectionMode="Single"
                         SelectionChangedCommand="{Binding SelectGroceryListCommand}"
                         SelectionChangedCommandParameter="{Binding Source={RelativeSource Self}, Path=SelectedItem}">
+            
             <CollectionView.ItemsLayout>
                 <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
             </CollectionView.ItemsLayout>
