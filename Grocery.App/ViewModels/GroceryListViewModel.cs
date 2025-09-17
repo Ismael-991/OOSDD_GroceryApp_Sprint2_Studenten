@@ -36,14 +36,12 @@ namespace Grocery.App.ViewModels
             base.OnAppearing();
 
             var loggedInUser = _global.Client;
-            GroceryLists.Clear();
             if (loggedInUser != null)
             {
                 LoggedInUserName = loggedInUser.Name;
-
+                GroceryLists.Clear();
                 var userLists = _groceryListService.GetAll()
                     .Where(list => list.ClientId == loggedInUser.Id);
-
                 foreach (var list in userLists)
                 {
                     GroceryLists.Add(list);
