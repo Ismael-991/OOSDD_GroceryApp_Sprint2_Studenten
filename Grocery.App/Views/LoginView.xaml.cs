@@ -1,12 +1,12 @@
-using Grocery.App.ViewModels;
+ using Grocery.App.ViewModels;
 
-namespace Grocery.App.Views;
+ namespace Grocery.App.Views;
 
-public partial class LoginView : ContentPage
-{
-	public LoginView(LoginViewModel viewModel)
-	{
-		InitializeComponent();
-		BindingContext = viewModel;
-	}
+ public partial class LoginView : ContentPage
+ {
+ 	public LoginView(LoginViewModel viewModel)
+ 	{
+ 		InitializeComponent();
+ 		BindingContext = viewModel;
+ 	}
 }
